@@ -1,17 +1,14 @@
-FROM node:latest
+FROM node:14-slim
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package.json .
 
-COPY package-lock.json ./
+COPY package-lock.json .
 
 RUN npm install
 
-#COPY public ./
-#COPY src ./
-
-#TODO Add docker-ignore
-COPY . .
+COPY public ./public/
+COPY src ./src/
 
 CMD ["npm", "start"]
