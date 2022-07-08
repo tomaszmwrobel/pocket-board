@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  pocket-board-api:
+    image: pocket-board-api:latest
+    container_name: pocket-board-api
+    hostname: pocket-board-api
+    ports:
+      - "8090:8090"
+    networks:
+      - pocket-board-network
+
+  pocket-board-gui:
+    image: pocket-board-gui:latest
+    container_name: pocket-board-gui
+    hostname: pocket-board-gui
+    ports:
+      - "80:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:8090
+    networks:
+      - pocket-board-network
+
+networks:
+  pocket-board-network:
+    driver: bridge
