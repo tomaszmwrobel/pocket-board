@@ -1,7 +1,9 @@
 import * as React from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from "react-bootstrap";
 import Editor from "@monaco-editor/react";
 
+const textToBase64 = "text to Base64"
+const base64ToPlainText = "base64 to plain text"
 export class EditorBase64 extends React.Component {
 
     constructor(props) {
@@ -13,7 +15,10 @@ export class EditorBase64 extends React.Component {
             showSimpleReactComponent: false,
             showSimpleMainView1: false,
             showEditorBase64: false,
+            base64Direction: textToBase64,
+            isBase64Source: false
         }
+        this.handleDirection = this.handleDirection.bind(this)
     }
 
     handleEditorDidMount = (editor, monaco) => {
@@ -25,18 +30,62 @@ export class EditorBase64 extends React.Component {
     }
 
     handleEditorChange = (value, event) => {
-        let encoded = btoa(value);
-        this.monacoOutput.getModel().setValue(encoded)
+        console.log("editor changed: " + this.state.base64Direction)
+        let result = ""
+        if (this.state.isBase64Source) {
+            result = this.getDecodedValue(value);
+        } else {
+            result = btoa(value)
+        }
+        this.monacoOutput.getModel().setValue(result)
 
+    }
+
+    getDecodedValue(value) {
+        try {
+            return atob(value)
+        } catch (e) {
+            console.log("Wrong base64 Input")
+            return  "Wrong  base64 Input"
+        }
+    }
+
+    handleDirection() {
+        let changedDirection = textToBase64
+        if (this.state.base64Direction === textToBase64) {
+            changedDirection = base64ToPlainText
+        }
+        console.log("direction of transformation should be changed to: " + changedDirection)
+        this.setState(prevState =>({
+            base64Direction: changedDirection,
+            isBase64Source: !prevState.isBase64Source
+        }));
+        this.updateEditors();
+    }
+
+    updateEditors() {
+        let outputValue = this.monacoOutput.getModel().getValue()
+        let inputValue = this.monacoInput.getModel().getValue()
+        console.log("status to change:" + outputValue)
+        this.monacoInput.getModel().setValue(outputValue)
+        this.monacoOutput.getModel().setValue(inputValue)
     }
 
     render() {
         return <Container>
             <Row>
+                <Button onClick={this.handleDirection}>
+                    Change conversion
+                </Button>
+            </Row>
+        <Row>
+            <p>Current conversion: {this.state.base64Direction}</p>
+        </Row>
+            <Row>
                 <Col>
                     <Editor
                         height="90vh"
-                        defaultLanguage="javascript"
+                        defaultLanguage="plaintext"
                         defaultValue="// test value"
                         onMount={this.handleEditorDidMount}
                         onChange={this.handleEditorChange}
@@ -46,7 +95,7 @@ export class EditorBase64 extends React.Component {
                     <Editor
                         height="90vh"
                         defaultLanguage="plaintext"
-                        defaultValue=""
+                        defaultValue="Ly8gdGVzdCB2YWx1ZQ=="
                         onMount={this.handleEditorDidMount2}
                     />
                 </Col>
