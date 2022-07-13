@@ -47,18 +47,18 @@ export class NavigationWrapper extends React.Component {
     render() {
         return <Container fluid={true}>
             <Row>
-                <Col lg={1}>
+                <Col lg={2}>
                     <Navbar bg="dark" variant="dark">
                         <Container>
                             <Nav className="flex-column text-start" activeKey="1" onSelect={this.handleSelect}>
                                 <Nav.Link eventKey="1" href="#home">Home</Nav.Link>
                                 <Nav.Link eventKey="2" href="#">SimpleView1</Nav.Link>
-                                <Nav.Link eventKey="3" href="#">Base64 Editor</Nav.Link>
+                                <Nav.Link eventKey="3" href="#">Base64 Converter</Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>
                 </Col>
-                <Col lg={9}>
+                <Col lg={8}>
                     {this.state.showSimpleReactComponent && <SimpleReactComponent/>}
                     {this.state.showSimpleMainView1 && <SimpleMainView1/>}
                     {this.state.showEditorBase64 && <EditorBase64/>}
