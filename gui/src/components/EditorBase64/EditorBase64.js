@@ -2,8 +2,8 @@ import * as React from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import Editor from "@monaco-editor/react";
 
-const textToBase64 = "text to Base64"
-const base64ToPlainText = "base64 to plain text"
+const textToBase64 = "TEXT to Base64"
+const base64ToPlainText = "Base64 to PLAIN TEXT"
 export class EditorBase64 extends React.Component {
 
     constructor(props) {
@@ -12,9 +12,6 @@ export class EditorBase64 extends React.Component {
         this.monacoOutput = null
 
         this.state = {
-            showSimpleReactComponent: false,
-            showSimpleMainView1: false,
-            showEditorBase64: false,
             base64Direction: textToBase64,
             isBase64Source: false
         }

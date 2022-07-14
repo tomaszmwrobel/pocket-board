@@ -4,6 +4,7 @@ import {Col, Container, Nav, Navbar, Row} from "react-bootstrap";
 import {SimpleReactComponent} from "./components/SimpleReactComponent";
 import {SimpleMainView1} from "./components/SimpleMainView1";
 import {EditorBase64} from "./components/EditorBase64/EditorBase64";
+import {JsonYamlConverter} from "./components/JsonToYamlConverter/JsonYamlConverter";
 
 export class NavigationWrapper extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export class NavigationWrapper extends React.Component {
             showSimpleReactComponent: false,
             showSimpleMainView1: false,
             showEditorBase64: false,
+            showJsonYamlConverter: false,
         }
     }
 
@@ -22,6 +24,7 @@ export class NavigationWrapper extends React.Component {
                     showSimpleReactComponent: true,
                     showSimpleMainView1: false,
                     showEditorBase64: false,
+                    showJsonYamlConverter: false,
                 });
                 return;
             case '2':
@@ -29,6 +32,7 @@ export class NavigationWrapper extends React.Component {
                     showSimpleReactComponent: false,
                     showSimpleMainView1: true,
                     showEditorBase64: false,
+                    showJsonYamlConverter: false,
                 });
                 return;
             case '3':
@@ -36,6 +40,15 @@ export class NavigationWrapper extends React.Component {
                     showSimpleReactComponent: false,
                     showSimpleMainView1: false,
                     showEditorBase64: true,
+                    showJsonYamlConverter: false,
+                });
+                return;
+            case '4':
+                this.setState({
+                    showSimpleReactComponent: false,
+                    showSimpleMainView1: false,
+                    showEditorBase64: false,
+                    showJsonYamlConverter: true,
                 });
                 return;
             default:
@@ -54,6 +67,7 @@ export class NavigationWrapper extends React.Component {
                                 <Nav.Link eventKey="1" href="#home">Home</Nav.Link>
                                 <Nav.Link eventKey="2" href="#">SimpleView1</Nav.Link>
                                 <Nav.Link eventKey="3" href="#">Base64 Converter</Nav.Link>
+                                <Nav.Link eventKey="4" href="#">Json/Yaml Converter</Nav.Link>
                             </Nav>
                         </Container>
                     </Navbar>
@@ -62,6 +76,7 @@ export class NavigationWrapper extends React.Component {
                     {this.state.showSimpleReactComponent && <SimpleReactComponent/>}
                     {this.state.showSimpleMainView1 && <SimpleMainView1/>}
                     {this.state.showEditorBase64 && <EditorBase64/>}
+                    {this.state.showJsonYamlConverter && <JsonYamlConverter/>}
                 </Col>
             </Row>
         </Container>;
