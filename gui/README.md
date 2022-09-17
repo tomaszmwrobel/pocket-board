@@ -73,7 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### Docker 
 #### Build
 ```
-docker build -t pocket-board-gui:latest .:wq
+docker build -t pocket-board-gui:latest .
 ```
 #### Run
 ``` 
