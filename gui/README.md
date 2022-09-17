@@ -74,9 +74,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 #### Build
 ```
 docker build -t pocket-board-gui:latest .
+docker build -f Dockerfile-builider2 -t pocket-board-gui:1.0 .
 ```
 #### Run
 ``` 
 docker run -p 3000:3000 pocket-board-gui:latest
+docker run -p 3000:3000 pocket-board-gui:1.0
 ```
 
