@@ -29,7 +29,7 @@ docker build -t pocket-board-api:latest .
 docker build -t pocket-board-gui:latest .
 ```
 
-3. In root directory use run:
+3. In root directory run:
 ``` 
 docker-compose up
 ```
