@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<docker.image.tag>${project.artifactId}:latest</docker.image.tag>
+		<docker.image.tag>pocket-board-api:latest</docker.image.tag>
 	</properties>
 
 	<dependencies>
